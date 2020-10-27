@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "667313965205",
+    "firebase_url": "https://fir-cookbook-38a84.firebaseio.com",
+    "project_id": "fir-cookbook-38a84",
+    "storage_bucket": "fir-cookbook-38a84.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667313965205:android:735062e39185eb151a739c",
+        "android_client_info": {
+          "package_name": "com.example.mycookbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667313965205-1ek97h2aogvbkeolc1frg2ge86gn5njv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAm7HOw7aJOxUSg7TIc663-J0Vv2Ohi15k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667313965205-1ek97h2aogvbkeolc1frg2ge86gn5njv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "667313965205-63vshki1efkv00t58mq2i90o4mm12j4n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.em0.mycookbook"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
