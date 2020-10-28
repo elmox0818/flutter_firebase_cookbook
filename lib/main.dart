@@ -1,10 +1,18 @@
 // lib/main.dart
 
 import 'package:flutter/material.dart';
+// 追加部分
+import 'package:firebase_core/firebase_core.dart';
 
-import './screens/home_screen.dart';
+// 追加部分
+import 'widgets/auth/auth_check.dart';
 
-void main() {
+// 編集部分
+void main() async {
+  // これがないとエラーが出ます
+  WidgetsFlutterBinding.ensureInitialized();
+  // Firebaseのサービスを使う前に初期化を行います
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -16,9 +24,9 @@ class MyApp extends StatelessWidget {
       title: 'Firebase CookBook',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(),
+      // 編集部分
+      home: AuthCheck(),
     );
   }
 }
