@@ -1,17 +1,15 @@
 // lib/main.dart
 
 import 'package:flutter/material.dart';
-// 追加部分
 import 'package:firebase_core/firebase_core.dart';
 
-// 追加部分
-import 'widgets/auth/auth_check.dart';
+import './widgets/auth/auth_check.dart';
+import './screens/password_change_screen.dart';
+import './screens/email_change_screen.dart';
+import './screens/reset_password_screen.dart';
 
-// 編集部分
 void main() async {
-  // これがないとエラーが出ます
   WidgetsFlutterBinding.ensureInitialized();
-  // Firebaseのサービスを使う前に初期化を行います
   await Firebase.initializeApp();
   runApp(MyApp());
 }
@@ -25,8 +23,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // 編集部分
       home: AuthCheck(),
+      routes: {
+        PasswordChangeScreen.routeName: (context) => PasswordChangeScreen(),
+        EmailChangeScreen.routeName: (context) => EmailChangeScreen(),
+        ResetPasswordScreen.routeName: (context) => ResetPasswordScreen(),
+      },
     );
   }
 }

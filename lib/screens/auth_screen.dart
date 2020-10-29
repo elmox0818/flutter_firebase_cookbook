@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/auth/signin_anonymously_button.dart';
 import '../widgets/auth/email_sign_up_form.dart';
+import '../widgets/auth/email_sign_in_form.dart';
 
 class AuthScreen extends StatefulWidget {
   @override
@@ -47,7 +48,15 @@ class _AuthScreenState extends State<AuthScreen> {
         ],
       ),
       body: Center(
-        child: _isSignIn ? SignInAnonymouslyButton() : EmailSignUpForm(),
+        child: _isSignIn
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  EmailSignInForm(),
+                  SignInAnonymouslyButton(),
+                ],
+              )
+            : EmailSignUpForm(),
       ),
     );
   }
