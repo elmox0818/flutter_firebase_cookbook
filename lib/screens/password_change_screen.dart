@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'package:flushbar/flushbar.dart';
+
+import '../helpers/alert_helpers.dart';
 
 class PasswordChangeScreen extends StatefulWidget {
   static const routeName = "/password_change";
@@ -13,6 +14,7 @@ class PasswordChangeScreen extends StatefulWidget {
 }
 
 class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
+  final AlertHelpers alert = AlertHelpers();
   final _formKey = GlobalKey<FormState>();
 
   var _isLoading = false;
@@ -40,7 +42,7 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
           setState(() {
             _isLoading = false;
           });
-          _showErrorFlash("パスワードが一致しません");
+          alert.showFlash(context, "パスワードが一致しません", Colors.red);
           return;
         }
         // パスワード変更を実行箇所
@@ -57,7 +59,7 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
         if (err.message != null) {
           message = err.message;
         }
-        _showErrorFlash(message);
+        alert.showFlash(context, message, Colors.red);
         setState(() {
           _isLoading = false;
         });
@@ -68,16 +70,6 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
         });
       }
     }
-  }
-
-  void _showErrorFlash(String message) {
-    Flushbar(
-      message: message,
-      backgroundColor: Colors.red,
-      margin: EdgeInsets.all(8),
-      borderRadius: 8,
-      duration: Duration(seconds: 3),
-    )..show(context);
   }
 
   @override

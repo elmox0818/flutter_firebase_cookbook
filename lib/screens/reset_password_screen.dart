@@ -5,6 +5,8 @@ import 'package:flushbar/flushbar.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../helpers/alert_helpers.dart';
+
 class ResetPasswordScreen extends StatefulWidget {
   static const routeName = "/reset-password";
   @override
@@ -12,6 +14,7 @@ class ResetPasswordScreen extends StatefulWidget {
 }
 
 class ResetPasswordScreenState extends State<ResetPasswordScreen> {
+  final AlertHelpers alert = AlertHelpers();
   final _formKey = GlobalKey<FormState>();
 
   bool _isLoading = false;
@@ -87,29 +90,14 @@ class ResetPasswordScreenState extends State<ResetPasswordScreen> {
                               if (_result == 'success') {
                                 Navigator.pop(context);
                               } else if (_result == 'ERROR_INVALID_EMAIL') {
-                                Flushbar(
-                                  message: "メールアドレスが不正です",
-                                  backgroundColor: Colors.red,
-                                  margin: EdgeInsets.all(8),
-                                  borderRadius: 8,
-                                  duration: Duration(seconds: 3),
-                                )..show(context);
+                                alert.showFlash(
+                                    context, "メールアドレスが不正です", Colors.red);
                               } else if (_result == 'ERROR_USER_NOT_FOUND') {
-                                Flushbar(
-                                  message: "登録されていないメールアドレスです",
-                                  backgroundColor: Colors.red,
-                                  margin: EdgeInsets.all(8),
-                                  borderRadius: 8,
-                                  duration: Duration(seconds: 3),
-                                )..show(context);
+                                alert.showFlash(
+                                    context, "登録されていないメールアドレスです", Colors.red);
                               } else {
-                                Flushbar(
-                                  message: "リセットメールを送信するのに失敗しました",
-                                  backgroundColor: Colors.red,
-                                  margin: EdgeInsets.all(8),
-                                  borderRadius: 8,
-                                  duration: Duration(seconds: 3),
-                                )..show(context);
+                                alert.showFlash(context, "リセットメールを送信するのに失敗しました",
+                                    Colors.red);
                               }
                               setState(() {
                                 _isLoading = false;

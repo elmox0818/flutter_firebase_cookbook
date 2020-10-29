@@ -85,7 +85,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
             key: _formKey,
             child: Column(
               children: [
-                // メールアドレスの入力フィールド
+                // パスワードの入力フィールド
                 TextFormField(
                   key: ValueKey("password"),
                   decoration: InputDecoration(labelText: "パスワード"),
@@ -100,7 +100,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                     _password = value;
                   },
                 ),
-                // パスワード1の入力フィールド
+                // メールアドレス1の入力フィールド
                 TextFormField(
                   key: ValueKey("email1"),
                   decoration: InputDecoration(labelText: "新しいメールアドレス"),
@@ -115,7 +115,7 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                     _email1 = value;
                   },
                 ),
-                // パスワード2の入力フィールド
+                // メールアドレス2の入力フィールド
                 TextFormField(
                   key: ValueKey("email2"),
                   decoration: InputDecoration(labelText: "新しいメールアドレス確認"),
