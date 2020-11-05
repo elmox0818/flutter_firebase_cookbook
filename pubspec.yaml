@@ -38,6 +38,9 @@ dev_dependencies:
   flushbar: ^1.10.4
   fancy_bottom_navigation: ^0.3.2
   apple_sign_in: ^0.1.0
+  modal_bottom_sheet: ^0.2.2
+  intl: ^0.16.1
+  awesome_dialog: ^1.2.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

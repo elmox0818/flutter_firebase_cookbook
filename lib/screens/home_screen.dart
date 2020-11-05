@@ -6,6 +6,10 @@ import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 
 import '../screens/setting_screen.dart';
 import '../widgets/home/show_email.dart';
+import '../screens/add_todo_screen.dart';
+import '../widgets/UI/show_modal_button.dart';
+import '../screens/todo_overview_screen.dart';
+import '../screens/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -23,6 +27,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          // 追加
+          leading: ShowModalButton(
+            Icon(
+              Icons.add,
+            ),
+            AddTodoScreen(),
+          ),
           actions: [
             FlatButton(
               onPressed: _signOut,
@@ -35,11 +46,19 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        body: _currentPage == 0 ? ShowEmail() : SettingScreen(),
+        body: _currentPage == 0
+            ? ShowEmail()
+            : _currentPage == 1
+                ? TodoOverviewScreen()
+                : _currentPage == 2
+                    ? SettingScreen()
+                    : ProfileScreen(),
         bottomNavigationBar: FancyBottomNavigation(
           tabs: [
             TabData(iconData: Icons.home, title: "ホーム"),
-            TabData(iconData: Icons.settings, title: "設定")
+            TabData(iconData: Icons.list, title: "TODOリスト"),
+            TabData(iconData: Icons.settings, title: "設定"),
+            TabData(iconData: Icons.account_circle, title: "プロフィール")
           ],
           onTabChangedListener: (position) {
             setState(() {
