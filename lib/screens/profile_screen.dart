@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../widgets/pickers/user_image_picker.dart';
+
 class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -50,8 +52,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
         return SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(height: 50),
+              userData.data().containsKey("imageUrl")
+                  ? CircleAvatar(
+                      radius: 50,
+                      backgroundImage: NetworkImage(userData.get("imageUrl")),
+                    )
+                  : Icon(
+                      Icons.account_circle,
+                    ),
+              userData.data().containsKey("imageUrl")
+                  ? UserImagePicker(userData.get("imageUrl"))
+                  : UserImagePicker(""),
               SizedBox(
-                height: 100,
+                height: 50,
               ),
               userData.data().containsKey("userName")
                   ? Center(
@@ -61,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Text("ユーザ名が設定されていません"),
                     ),
               SizedBox(
-                height: 100,
+                height: 50,
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
