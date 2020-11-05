@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/services.dart';
-import 'package:flushbar/flushbar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../helpers/alert_helpers.dart';
 
@@ -55,6 +55,13 @@ class _EmailChangeScreenState extends State<EmailChangeScreen> {
                 email: user.email, password: _password));
         // メールアドレスを更新
         await authResult.user.verifyBeforeUpdateEmail(_email1);
+        // Firestoreのデータも更新
+        await FirebaseFirestore.instance
+            .collection("users")
+            .doc(authResult.user.uid)
+            .update({
+          "email": _email1,
+        });
         alert.showFlash(context, "確認のメールを送信しました", Colors.blue);
         Navigator.pop(context);
       } on PlatformException catch (err) {

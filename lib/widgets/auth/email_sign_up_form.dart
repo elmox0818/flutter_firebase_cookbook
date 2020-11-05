@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/services.dart';
-import 'package:flushbar/flushbar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../helpers/alert_helpers.dart';
 
@@ -49,8 +49,13 @@ class _EmailSignUpFormState extends State<EmailSignUpForm> {
         UserCredential authResult = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
                 email: _email, password: _password1);
-        // 登録に成功したユーザ情情報も取得可能
-        print(authResult.user.uid);
+        // 登録に成功したユーザ情情報も取得可能 -> Firestoreに登録
+        FirebaseFirestore.instance
+            .collection("users")
+            .doc(authResult.user.uid)
+            .set({
+          "email": authResult.user.email,
+        });
         // 有効なメールアドレスか確認するためのメールを送信する;
         authResult.user.sendEmailVerification();
         alert.showFlash(context, "メールアドレス確認用のメールを送信しました。", Colors.blue);
