@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>667313965205-oa44gvpp30n69ukfjpfq9iulgu6ec89h.apps.googleusercontent.com</string>
+	<string>667313965205-63vshki1efkv00t58mq2i90o4mm12j4n.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.667313965205-oa44gvpp30n69ukfjpfq9iulgu6ec89h</string>
+	<string>com.googleusercontent.apps.667313965205-63vshki1efkv00t58mq2i90o4mm12j4n</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDea9FDimEClXhZxxamKon4CQqfV4UaJFY</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.mycookbook</string>
+	<string>com.em0.mycookbook</string>
 	<key>PROJECT_ID</key>
 	<string>fir-cookbook-38a84</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:667313965205:ios:05f66a39c31540c41a739c</string>
+	<string>1:667313965205:ios:086363c3b6e033981a739c</string>
 	<key>DATABASE_URL</key>
 	<string>https://fir-cookbook-38a84.firebaseio.com</string>
 </dict>

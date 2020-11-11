@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../screens/setting_screen.dart';
 import '../widgets/home/show_email.dart';
@@ -10,6 +11,7 @@ import '../screens/add_todo_screen.dart';
 import '../widgets/UI/show_modal_button.dart';
 import '../screens/todo_overview_screen.dart';
 import '../screens/profile_screen.dart';
+import '../widgets/home/user_list.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -21,6 +23,31 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _signOut() async {
     FirebaseAuth.instance.signOut();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    final fbm = FirebaseMessaging();
+    // 通知を許可するようリクエスト
+    fbm.requestNotificationPermissions();
+    // 設定を行う
+    fbm.configure(
+      onMessage: (msg) {
+        print(msg);
+        return;
+      },
+      onLaunch: (msg) {
+        print(msg);
+        return;
+      },
+      onResume: (msg) {
+        print(msg);
+        return;
+      },
+    );
+    // トピックをユーザIDに設定する
+    fbm.subscribeToTopic(FirebaseAuth.instance.currentUser.uid);
   }
 
   @override
@@ -47,7 +74,15 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         body: _currentPage == 0
-            ? ShowEmail()
+            ? Column(
+                children: [
+                  ShowEmail(),
+                  Container(
+                    height: 300,
+                    child: UserList(),
+                  ),
+                ],
+              )
             : _currentPage == 1
                 ? TodoOverviewScreen()
                 : _currentPage == 2
